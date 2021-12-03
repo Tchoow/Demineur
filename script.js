@@ -47,7 +47,6 @@ function initBombeTableJeu(row, col) {
             nbBombePlaced++;
         }
     }
-
     tableauJeu[row][col].isMine  = false;
     tableauJeu[row][col].nbMines = 0;
     tableauJeu[row+1][col].isMine  = false;
@@ -167,6 +166,7 @@ function showTableJeu() {
             } else {
                 if (tableauJeu[i][j].isFlagged) {
                     document.getElementById(i + "-" + j).innerHTML = "🏳️";
+                    
                 } else {
                     document.getElementById(i + "-" + j).innerHTML = "";
                     
@@ -189,6 +189,7 @@ function revealAll() {
     showTableJeu();
 }
 
+
 // Reveal Bombes
 const cases = document.querySelectorAll(".case");
 for(var i = 0; i < cases.length; i++) {
@@ -203,15 +204,12 @@ for(var i = 0; i < cases.length; i++) {
       initBombeTableJeu(row, col);
       getBombesArround();
       revealBomnbeArround(row, col);
-      console.log("Je passerais ici");
     }
     else {
       if (!tableauJeu[row][col].isFlagged) {
         revealBomnbeArround(row, col);
       }
-    } 
-
-
+    }
 
     //console.log(nbCliques);
 
