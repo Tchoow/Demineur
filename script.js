@@ -6,7 +6,10 @@
   +#+    +#+ +#+        +#+       +#+     +#+     +#+  +#+#+# +#+        +#+    +#+ +#+    +#+    
  #+#    #+# #+#        #+#       #+#     #+#     #+#   #+#+# #+#        #+#    #+# #+#    #+#     
 #########  ########## ###       ### ########### ###    #### ##########  ########  ###    ###
-@Tchoow
+
+04/12/2021
+Theo ~ @Tchoow
+
 */
 
 
@@ -37,7 +40,7 @@ function initDefaultTableJeu() {
 }
 
 function initBombeTableJeu(row, col) {
-    var nbBombe = Math.floor(gamesize * gamesize / 5);
+    var nbBombe = Math.floor(gamesize * gamesize / 10);
     var nbBombePlaced = 0;
     while (nbBombePlaced < nbBombe) {
         var x = Math.floor(Math.random() * gamesize);
@@ -67,6 +70,14 @@ function initBombeTableJeu(row, col) {
     tableauJeu[row-1][col+1].nbMines = 0;
 }
 
+function resetGame() {
+  nbCliques = 0;
+  initDefaultTableJeu();
+  resetStyleDefault();
+  showTableJeu();
+}
+
+
 function getBombesArround() {
     for (var i = 0; i < gamesize; i++) {
         for (var j = 0; j < gamesize; j++) {
@@ -84,6 +95,15 @@ function getBombesArround() {
                     if (j < gamesize - 1) tableauJeu[i + 1][j + 1].nbMines++;
                 }
             }
+        }
+    }
+}
+
+
+function resetStyleDefault() {
+    for (var i = 0; i < gamesize; i++) {
+        for (var j = 0; j < gamesize; j++) {
+          document.getElementById(i + "-" + j).style.background = "#636e72";
         }
     }
 }
@@ -114,6 +134,7 @@ function revealBomnbeArround(x, y) {
     showTableJeu();
 
 }
+
 
 function styleUpdater(i, j) {
 
