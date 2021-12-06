@@ -6,10 +6,8 @@
   +#+    +#+ +#+        +#+       +#+     +#+     +#+  +#+#+# +#+        +#+    +#+ +#+    +#+    
  #+#    #+# #+#        #+#       #+#     #+#     #+#   #+#+# #+#        #+#    #+# #+#    #+#     
 #########  ########## ###       ### ########### ###    #### ##########  ########  ###    ###
-
-04/12/2021
-Theo ~ @Tchoow
-
+@Tchoow
+Github : https://github.com/Tchoow
 */
 
 
@@ -75,8 +73,25 @@ function resetGame() {
   initDefaultTableJeu();
   resetStyleDefault();
   showTableJeu();
+  
+  // reset the color of the body
+  wrapper.style.background = "#333333";
 }
 
+
+// Conditions de victoir
+function isWin() {
+  var bIsWin = true;
+  
+  for (var i = 0; i < gamesize; i++) {
+    for (var j = 0; j < gamesize; j++) {
+        if (  tableauJeu[i][j].isMine &&  !tableauJeu[i][j].isFlagged  ) bIsWin = false;
+        if ( !tableauJeu[i][j].isMine &&  tableauJeu[i][j].isRevealed   ) bIsWin =  false;
+    }
+  }
+  
+  return bIsWin;
+}
 
 function getBombesArround() {
     for (var i = 0; i < gamesize; i++) {
@@ -229,9 +244,10 @@ for(var i = 0; i < cases.length; i++) {
     else {
       if (!tableauJeu[row][col].isFlagged) {
         revealBomnbeArround(row, col);
+        if ( isWin() === true ) document.write("Vous avez gagné, bravo !");
       }
     }
-
+ 
     //console.log(nbCliques);
 
     nbCliques++;
