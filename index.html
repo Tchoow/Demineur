@@ -8,6 +8,21 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+  <html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demineur</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="hud">
+    <div class="bombes">💣 --</div>
+    <div class="timer">⏱️ ---</div>
+    <div class="flags">🏳️ --</div>
+    <div class="author"><a href="https://github.com/Tchoow" target="_blank">👤 @Tchoow</a></div>
+  </div>
     <div class="game-container">
         <div class="wrapper">
             <div class='case' id='0-0'></div>
@@ -207,8 +222,12 @@
             <div class='case' id='13-12'></div>
             <div class='case' id='13-13'></div>
         </div>
-            <button  onClick="resetGame();" id='btn-restart'>Recommencer</button>
+        <button  onClick="resetGame();" id='btn-restart'>Recommencer</button>
       </div>
+      
+    <script type="text/javascript" src="script.js" ></script>
+</body>
+</html>
       
     <script type="text/javascript" src="script.js" ></script>
 </body>
