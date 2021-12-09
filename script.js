@@ -79,19 +79,34 @@ function resetGame() {
 }
 
 
-// Conditions de victoir
+// Conditions de victoire
 function isWin() {
   var bIsWin = true;
   
   for (var i = 0; i < gamesize; i++) {
     for (var j = 0; j < gamesize; j++) {
-        if (  tableauJeu[i][j].isMine &&  !tableauJeu[i][j].isFlagged  ) bIsWin = false;
-        if ( !tableauJeu[i][j].isMine &&  tableauJeu[i][j].isRevealed   ) bIsWin =  false;
+        if ( !tableauJeu[i][j].isMine && !tableauJeu[i][j].isRevealed  ) bIsWin = false;
     }
   }
-  
   return bIsWin;
 }
+
+// Conditions de défaite
+function isLoose() {
+  
+  for (var i = 0; i < gamesize; i++) {
+    for (var j = 0; j < gamesize; j++) {
+        if (tableauJeu[i][j].isMine && tableauJeu[i][j].isRevealed) {
+            revealAll();
+            wrapper.style.background = "#e74c3c";
+            return true;
+      }
+
+    }
+  }
+  return false;
+}
+
 
 function getBombesArround() {
     for (var i = 0; i < gamesize; i++) {
@@ -126,11 +141,6 @@ function resetStyleDefault() {
 function revealBomnbeArround(x, y) {
     
     if (tableauJeu[x][y].isRevealed) return;
-    if (tableauJeu[x][y].isMine) {
-        revealAll();
-        wrapper.style.background = "#e74c3c";
-        return;
-    }
     tableauJeu[x][y].isRevealed = true;
     if (tableauJeu[x][y].nbMines == 0) {
         if (x > 0) {
@@ -230,7 +240,7 @@ function revealAll() {
 const cases = document.querySelectorAll(".case");
 for(var i = 0; i < cases.length; i++) {
   cases[i].addEventListener('click', event => {
-    var c = event.target.id.split("-");
+    var c   = event.target.id.split("-");
     var row = parseInt(c[0]);
     var col = parseInt(c[1]);
     // Reveal the bomb if the case has no flag
@@ -244,10 +254,17 @@ for(var i = 0; i < cases.length; i++) {
     else {
       if (!tableauJeu[row][col].isFlagged) {
         revealBomnbeArround(row, col);
-        if ( isWin() === true ) document.write("Vous avez gagné, bravo !");
+        
+        if ( ! isLoose() ) {
+          if(isWin()) {
+            console.log("win")
+            wrapper.style.background = "#27ae60";
+            revealAll();
+          }
+        };
       }
     }
- 
+
     //console.log(nbCliques);
 
     nbCliques++;
@@ -270,6 +287,8 @@ for(var i = 0; i < cases.length; i++) {
     }
     
     showTableJeu();
+
     event.preventDefault();
+
   });
 }
