@@ -17,3 +17,6 @@ Vous retrouverez également ce dernier sur mon [Code Pen](https://codepen.io/Tch
 
 # Mode triche
 ![screen jeu](https://media.discordapp.net/attachments/671292077870415872/916397859576893440/unknown.png)
+
+# Version finale
+![screen jeu](https://media.discordapp.net/attachments/671292077870415872/933653591888130069/unknown.png?width=512&height=594)
